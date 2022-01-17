@@ -8,3 +8,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Headlines"
 include ':app'
+include ':core'
+include ':coreui'
+include ':network'
