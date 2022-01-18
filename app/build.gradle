@@ -1,17 +1,19 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
-    compileSdk 31
+    compileSdk rootProject.ext.compileSdkVersion
 
     defaultConfig {
         applicationId "com.github.daniilbug.headlines"
-        minSdk 23
-        targetSdk 31
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+
+        versionName rootProject.ext.versionName
+        versionCode rootProject.ext.versionCode
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -22,6 +24,36 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "default", "drawer"
+
+    productFlavors {
+        dev {
+            dimension "default"
+        }
+
+        prod {
+            dimension "default"
+        }
+
+        dDrawer {
+            dimension "drawer"
+        }
+
+        noDDrawer {
+            dimension "drawer"
+        }
+    }
+
+    variantFilter { variant ->
+        def name = variant.name
+        def isNotDevDebugBuild = !name.contains("dev") && name.contains("Debug")
+        def isPublicBuildDDrawer = name.contains("prod") && !name.contains("NoDDrawer")
+        if (isNotDevDebugBuild || isPublicBuildDDrawer) {
+            setIgnore(true)
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -32,10 +64,17 @@ android {
 }
 
 dependencies {
+    implementation projects.core
+
     implementation libs.bundles.kotlin
     implementation libs.bundles.kotlinx
     implementation libs.bundles.androidx
     implementation libs.material
+    implementation libs.cicerone
+
+    implementation libs.dagger.annotations
+    kapt libs.dagger.processor
+
     testImplementation libs.bundles.test
     androidTestImplementation libs.bundles.android.test
 }

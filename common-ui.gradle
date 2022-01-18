@@ -35,6 +35,35 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    flavorDimensions "default", "drawer"
+
+    productFlavors {
+        dev {
+            dimension "default"
+        }
+
+        prod {
+            dimension "default"
+        }
+
+        dDrawer {
+            dimension "drawer"
+        }
+
+        noDDrawer {
+            dimension "drawer"
+        }
+    }
+
+    variantFilter { variant ->
+        def name = variant.name
+        def isNotDevDebugBuild = !name.contains("dev") && name.contains("Debug")
+        def isPublicBuildDDrawer = name.contains("prod") && !name.contains("NoDDrawer")
+        if (isNotDevDebugBuild || isPublicBuildDDrawer) {
+            setIgnore(true)
+        }
+    }
+
     sourceSets {
         main {
             java.srcDirs += 'src/main/kotlin'
