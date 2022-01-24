@@ -46,11 +46,11 @@ android {
             dimension "default"
         }
 
-        dDrawer {
+        withDrawer {
             dimension "drawer"
         }
 
-        noDDrawer {
+        noDrawer {
             dimension "drawer"
         }
     }

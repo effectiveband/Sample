@@ -1,0 +1,15 @@
+package com.github.daniilbug.mainNavigation
+
+import com.github.daniilbug.core.navigation.AppScreen
+
+sealed class MainScreen : AppScreen {
+    object Feed : MainScreen() {
+        override val name: String
+            get() = "Feed"
+    }
+
+    object About : MainScreen() {
+        override val name: String
+            get() = "About"
+    }
+}

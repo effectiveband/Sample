@@ -1,0 +1,91 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        warning 'InvalidPackage'
+    }
+
+    kotlinOptions {
+        freeCompilerArgs += [
+                "-Xuse-experimental=kotlinx.serialization.ExperimentalSerializationApi",
+                "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
+                "-Xuse-experimental=kotlinx.coroutines.ExperimentalTime",
+                "-Xuse-experimental=kotlinx.coroutines.ObsoleteCoroutinesApi"]
+        jvmTarget = '1.8'
+    }
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+
+        versionName rootProject.ext.versionName
+        versionCode rootProject.ext.versionCode
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    flavorDimensions "default", "drawer"
+
+    productFlavors {
+        dev {
+            dimension "default"
+        }
+
+        prod {
+            dimension "default"
+        }
+
+        withDrawer {
+            dimension "drawer"
+        }
+
+        noDrawer {
+            dimension "drawer"
+        }
+    }
+
+    variantFilter { variant ->
+        def name = variant.name
+        def isNotDevDebugBuild = !name.contains("dev") && name.contains("Debug")
+        def isPublicBuildDDrawer = name.contains("prod") && !name.contains("NoDDrawer")
+        if (isNotDevDebugBuild || isPublicBuildDDrawer) {
+            setIgnore(true)
+        }
+    }
+
+
+    sourceSets {
+        withDrawer {
+            java.srcDirs += 'src/withDrawer/java'
+            res.srcDirs += 'src/withDrawer/res'
+        }
+        noDrawer {
+            java.srcDirs += 'src/noDrawer/java'
+            res.srcDirs += 'src/noDrawer/res'
+        }
+    }
+}
+
+dependencies {
+    implementation projects.core
+    implementation projects.network
+
+    implementation libs.dagger.annotations
+    kapt libs.dagger.processor
+
+    debugImplementation libs.debugdrawer.core
+    debugImplementation libs.debugdrawer.retrofit
+    debugImplementation libs.debugdrawer.timber
+    debugImplementation libs.debugdrawer.logger
+}

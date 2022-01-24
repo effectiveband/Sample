@@ -36,11 +36,11 @@ android {
             dimension "default"
         }
 
-        dDrawer {
+        withDrawer {
             dimension "drawer"
         }
 
-        noDDrawer {
+        noDrawer {
             dimension "drawer"
         }
     }
@@ -65,6 +65,13 @@ android {
 
 dependencies {
     implementation projects.core
+    implementation projects.coreui
+    implementation projects.debug
+
+    implementation projects.main
+    implementation projects.mainNavigation
+
+    implementation projects.feed
 
     implementation libs.bundles.kotlin
     implementation libs.bundles.kotlinx

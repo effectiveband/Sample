@@ -1,8 +1,11 @@
 package com.github.daniilbug.headlines.di
 
-import android.app.Application
 import android.content.Context
+import com.github.daniilbug.debug.di.DebugMenuModule
+import com.github.daniilbug.feed.di.FeedComponentDependencies
 import com.github.daniilbug.headlines.HeadlinesApp
+import com.github.daniilbug.main.di.MainComponentDependencies
+import com.github.daniilbug.main.di.navigation.MainNavigationComponent
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.Router
 import dagger.BindsInstance
@@ -11,10 +14,14 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [],
-    dependencies = []
+    modules = [
+        AppModule::class,
+        ComponentDependenciesModule::class,
+        DebugMenuModule::class
+    ],
+    dependencies = [MainNavigationComponent::class]
 )
-interface AppComponent {
+interface AppComponent : MainComponentDependencies, FeedComponentDependencies {
 
     @Component.Builder
     interface Builder {
@@ -23,6 +30,8 @@ interface AppComponent {
 
         @BindsInstance
         fun applicationContext(context: Context): Builder
+
+        fun mainNavigationComponent(mainNavigationComponent: MainNavigationComponent): Builder
         fun build(): AppComponent
     }
 

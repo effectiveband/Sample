@@ -1,22 +1,31 @@
 package com.github.daniilbug.headlines
 
 import android.app.Application
+import band.effective.core.di.HasComponentDependencies
+import com.github.daniilbug.core.di.ComponentDependenciesProvider
 import com.github.daniilbug.headlines.di.AppComponent
 import com.github.daniilbug.headlines.di.DaggerAppComponent
+import com.github.daniilbug.main.di.navigation.DaggerMainNavigationComponent
 import com.github.terrakok.cicerone.Cicerone
+import javax.inject.Inject
 
-class HeadlinesApp: Application() {
+class HeadlinesApp: Application(), HasComponentDependencies {
 
-    lateinit var component: AppComponent
+    @Inject
+    override lateinit var dependencies: ComponentDependenciesProvider
 
     override fun onCreate() {
         super.onCreate()
 
         val cicerone = Cicerone.create()
 
-        component = DaggerAppComponent.builder()
+        DaggerAppComponent.builder()
             .applicationContext(this)
             .cicerone(cicerone)
+            .mainNavigationComponent(
+                DaggerMainNavigationComponent.factory().create(cicerone.router)
+            )
             .build()
+            .inject(this)
     }
 }

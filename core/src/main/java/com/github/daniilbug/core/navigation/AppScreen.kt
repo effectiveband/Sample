@@ -4,4 +4,4 @@ interface AppScreen {
     val name: String
 }
 
-val AppScreen.tag: String get() = javaClass.name
+val AppScreen.key: String get() = javaClass.name

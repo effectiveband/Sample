@@ -1,4 +1,4 @@
-package band.effective.core.base.fragment
+package com.github.daniilbug.core.base.fragment
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
