@@ -11,13 +11,13 @@ abstract class NavigationActivity(@LayoutRes private val res: Int) : BaseActivit
 
     abstract val containerResId: Int
 
-    override fun onPause() {
-        super.onPause()
-        navigationBinder.unbind()
-    }
-
     override fun onResumeFragments() {
         super.onResumeFragments()
         navigationBinder.bind(this)
+    }
+
+    override fun onPause() {
+        navigationBinder.unbind()
+        super.onPause()
     }
 }

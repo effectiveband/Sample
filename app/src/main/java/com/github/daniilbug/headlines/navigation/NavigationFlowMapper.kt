@@ -3,7 +3,7 @@ package com.github.daniilbug.headlines.navigation
 import android.content.Context
 import android.content.Intent
 import com.github.daniilbug.core.navigation.flow.NavigationFlow
-import com.github.daniilbug.main.MainActivity
+import com.github.daniilbug.main.presentation.MainActivity
 import dagger.Reusable
 import javax.inject.Inject
 

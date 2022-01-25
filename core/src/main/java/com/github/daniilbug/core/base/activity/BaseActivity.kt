@@ -9,7 +9,7 @@ import com.github.daniilbug.core.base.RootViewBinder
 import com.github.daniilbug.core.navigation.flow.FlowBinder
 import javax.inject.Inject
 
-abstract class BaseActivity(@LayoutRes private val res: Int) : AppCompatActivity() {
+abstract class BaseActivity(@LayoutRes private val res: Int?) : AppCompatActivity() {
 
     @Inject
     lateinit var rootViewBinder: RootViewBinder
@@ -21,9 +21,11 @@ abstract class BaseActivity(@LayoutRes private val res: Int) : AppCompatActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val root = rootViewBinder.getRootViewContainer(this)
-        view = LayoutInflater.from(this).inflate(res, root, false)
-        root.addView(view)
+        res?.let { id ->
+            val root = rootViewBinder.getRootViewContainer(this)
+            val content = LayoutInflater.from(this).inflate(id, root, false)
+            root.addView(content)
+        }
     }
 
     override fun onStart() {

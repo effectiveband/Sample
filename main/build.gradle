@@ -21,6 +21,7 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
     implementation projects.core
+    implementation projects.coreui
     implementation projects.mainNavigation
     implementation projects.feed
 

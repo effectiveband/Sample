@@ -16,6 +16,7 @@ import javax.inject.Singleton
 @Component(
     modules = [
         AppModule::class,
+        AppNavigationModule::class,
         ComponentDependenciesModule::class,
         DebugMenuModule::class
     ],

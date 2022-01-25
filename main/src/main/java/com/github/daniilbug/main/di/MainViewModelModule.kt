@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import band.effective.core.base.viewmodel.ViewModelKey
 import com.github.daniilbug.core.base.viewmodel.AppViewModelFactory
-import com.github.daniilbug.main.MainViewModel
+import com.github.daniilbug.main.presentation.MainViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

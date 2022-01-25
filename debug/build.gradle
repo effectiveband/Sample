@@ -58,7 +58,7 @@ android {
     variantFilter { variant ->
         def name = variant.name
         def isNotDevDebugBuild = !name.contains("dev") && name.contains("Debug")
-        def isPublicBuildDDrawer = name.contains("prod") && !name.contains("NoDDrawer")
+        def isPublicBuildDDrawer = name.contains("prod") && !name.contains("NoDrawer")
         if (isNotDevDebugBuild || isPublicBuildDDrawer) {
             setIgnore(true)
         }
