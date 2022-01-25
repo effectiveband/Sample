@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/marginMiddle"
+    android:layout_marginVertical="@dimen/marginSmall"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?selectableItemBackground"
+    android:minHeight="80dp"
+    app:contentPadding="@dimen/marginSmall"
+    tools:theme="@style/Theme.Headlines">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/itemHeadlinesSourceLetterText"
+            android:layout_width="@dimen/source_letter_size"
+            android:layout_height="48dp"
+            android:layout_marginStart="@dimen/marginSmall"
+            android:background="@drawable/background_source_letter"
+            android:gravity="center"
+            android:textAppearance="?textAppearanceHeadline5"
+            android:textColor="?colorOnSecondary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="A" />
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/itemHeadlinesFlow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/marginMiddle"
+            android:orientation="vertical"
+            app:constraint_referenced_ids="itemHeadlinesTitle, itemHeadlinesSource"
+            app:flow_horizontalAlign="start"
+            app:flow_horizontalBias="0"
+            app:flow_verticalGap="@dimen/marginTiny"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/itemHeadlinesSourceLetterText"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/itemHeadlinesTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?textAppearanceSubtitle1"
+            tools:text="Title" />
+
+        <TextView
+            android:id="@+id/itemHeadlinesSource"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?textAppearanceCaption"
+            tools:ignore="MissingConstraints"
+            tools:text="Source" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

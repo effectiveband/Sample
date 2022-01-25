@@ -17,7 +17,8 @@ val feedComponent = featureComponent<FeedComponent, Activity> { activity ->
         FeedComponentDependencies::class
     ],
     modules = [
-        FeedFragmentModule::class
+        FeedFragmentModule::class,
+        FeedViewModelModule::class
     ]
 )
 interface FeedComponent {

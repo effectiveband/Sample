@@ -1,8 +1,7 @@
 package com.github.daniilbug.feed.presentation.feed
 
-data class NewsItemUI(
+data class HeadlinesItemUI(
     val id: String,
     val title: String,
-    val description: String,
-    val imageUrl: String
+    val source: String
 )

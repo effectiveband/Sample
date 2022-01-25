@@ -4,7 +4,7 @@
         android:id="@+id/mainMenuNewsItem"
         android:enabled="true"
         android:icon="@drawable/ic_news"
-        android:title="@string/news" />
+        android:title="@string/headlines" />
     <item
         android:id="@+id/mainMenuSearchItem"
         android:enabled="true"
