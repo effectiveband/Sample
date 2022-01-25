@@ -2,4 +2,5 @@
 <resources>
     <string name="news">News</string>
     <string name="about">About</string>
+    <string name="search">Search</string>
 </resources>

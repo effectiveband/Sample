@@ -1,6 +1,7 @@
 package com.github.daniilbug.headlines.di
 
 import android.content.Context
+import com.github.daniilbug.about.di.AboutComponentDependencies
 import com.github.daniilbug.debug.di.DebugMenuModule
 import com.github.daniilbug.feed.di.FeedComponentDependencies
 import com.github.daniilbug.headlines.HeadlinesApp
@@ -22,7 +23,10 @@ import javax.inject.Singleton
     ],
     dependencies = [MainNavigationComponent::class]
 )
-interface AppComponent : MainComponentDependencies, FeedComponentDependencies {
+interface AppComponent :
+    MainComponentDependencies,
+    FeedComponentDependencies,
+    AboutComponentDependencies {
 
     @Component.Builder
     interface Builder {

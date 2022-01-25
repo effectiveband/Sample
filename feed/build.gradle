@@ -1,4 +1,4 @@
-apply from: "${rootProject.projectDir}/common.gradle"
+apply from: "${rootProject.projectDir}/common-ui.gradle"
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -19,12 +19,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-
     implementation projects.core
+    implementation projects.coreui
     implementation projects.mainNavigation
-
-    implementation libs.dagger.annotations
-    kapt libs.dagger.processor
-
-    implementation libs.material
 }

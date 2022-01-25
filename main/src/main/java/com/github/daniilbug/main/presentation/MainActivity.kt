@@ -29,6 +29,7 @@ class MainActivity : NavigationActivity(R.layout.activity_main) {
             when(item.itemId) {
                 R.id.mainMenuNewsItem -> viewModel.sendEvent(MainEvent.OpenFeed)
                 R.id.mainMenuAboutItem -> viewModel.sendEvent(MainEvent.OpenAbout)
+                R.id.mainMenuSearchItem -> viewModel.sendEvent(MainEvent.OpenSearch)
                 else -> return@setOnItemSelectedListener false
             }
             true

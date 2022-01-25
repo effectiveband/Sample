@@ -12,4 +12,9 @@ sealed class MainScreen : AppScreen {
         override val name: String
             get() = "About"
     }
+
+    object Search: MainScreen() {
+        override val name: String
+            get() = "Search"
+    }
 }
