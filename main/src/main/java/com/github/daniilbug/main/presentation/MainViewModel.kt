@@ -15,8 +15,9 @@ class MainViewModel @Inject constructor(
 
     fun sendEvent(event: MainEvent) {
         when (event) {
-            MainEvent.OpenAbout -> router.newRoot(MainScreen.About)
             MainEvent.OpenFeed -> router.newRoot(MainScreen.Feed)
+            MainEvent.OpenSearch -> router.newRoot(MainScreen.Search)
+            MainEvent.OpenAbout -> router.newRoot(MainScreen.About)
         }
     }
 }

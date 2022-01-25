@@ -7,6 +7,7 @@ import com.github.daniilbug.feed.di.FeedComponentDependencies
 import com.github.daniilbug.headlines.HeadlinesApp
 import com.github.daniilbug.main.di.MainComponentDependencies
 import com.github.daniilbug.main.di.navigation.MainNavigationComponent
+import com.github.daniilbug.search.di.SearchComponentDependencies
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.Router
 import dagger.BindsInstance
@@ -26,7 +27,8 @@ import javax.inject.Singleton
 interface AppComponent :
     MainComponentDependencies,
     FeedComponentDependencies,
-    AboutComponentDependencies {
+    AboutComponentDependencies,
+    SearchComponentDependencies {
 
     @Component.Builder
     interface Builder {
