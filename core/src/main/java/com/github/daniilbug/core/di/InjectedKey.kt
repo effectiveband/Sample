@@ -1,5 +1,8 @@
-package band.effective.core.di
+package com.github.daniilbug.core.di
 
 object InjectedKey {
-    const val BASE_URL = "BASE_URL"
+    object News {
+        const val BASE_URL = "NEWS_BASE_URL"
+        const val API_KEY = "NEWS_API_KEY"
+    }
 }

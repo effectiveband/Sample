@@ -38,10 +38,11 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/marginMiddle"
             android:orientation="vertical"
-            app:constraint_referenced_ids="itemHeadlinesTitle, itemHeadlinesSource"
+            app:constraint_referenced_ids="itemHeadlinesTitle, itemHeadlinesDate, itemHeadlinesSource"
             app:flow_horizontalAlign="start"
             app:flow_horizontalBias="0"
             app:flow_verticalGap="@dimen/marginTiny"
+            app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
@@ -52,14 +53,27 @@
             android:id="@+id/itemHeadlinesTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
             android:textAppearance="?textAppearanceSubtitle1"
+            app:layout_constrainedWidth="true"
             tools:text="Title" />
+
+        <TextView
+            android:id="@+id/itemHeadlinesDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?textAppearanceCaption"
+            app:layout_constrainedWidth="true"
+            tools:ignore="MissingConstraints"
+            tools:text="Today" />
 
         <TextView
             android:id="@+id/itemHeadlinesSource"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?textAppearanceCaption"
+            app:layout_constrainedWidth="true"
             tools:ignore="MissingConstraints"
             tools:text="Source" />
     </androidx.constraintlayout.widget.ConstraintLayout>

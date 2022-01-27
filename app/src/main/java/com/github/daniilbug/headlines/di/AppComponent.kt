@@ -7,6 +7,8 @@ import com.github.daniilbug.feed.di.FeedComponentDependencies
 import com.github.daniilbug.headlines.HeadlinesApp
 import com.github.daniilbug.main.di.MainComponentDependencies
 import com.github.daniilbug.main.di.navigation.MainNavigationComponent
+import com.github.daniilbug.network.di.NetworkModule
+import com.github.daniilbug.newsapi.di.NewsModule
 import com.github.daniilbug.search.di.SearchComponentDependencies
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.Router
@@ -20,7 +22,9 @@ import javax.inject.Singleton
         AppModule::class,
         AppNavigationModule::class,
         ComponentDependenciesModule::class,
-        DebugMenuModule::class
+        DebugMenuModule::class,
+        NetworkModule::class,
+        NewsModule::class
     ],
     dependencies = [MainNavigationComponent::class]
 )

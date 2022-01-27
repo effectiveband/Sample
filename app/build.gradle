@@ -75,11 +75,16 @@ dependencies {
     implementation projects.about
     implementation projects.search
 
+    implementation projects.network
+    implementation projects.newsApi
+
     implementation libs.bundles.kotlin
     implementation libs.bundles.kotlinx
     implementation libs.bundles.androidx
     implementation libs.material
     implementation libs.cicerone
+    implementation libs.moshi.core
+    implementation libs.retrofit
 
     implementation libs.dagger.annotations
     kapt libs.dagger.processor

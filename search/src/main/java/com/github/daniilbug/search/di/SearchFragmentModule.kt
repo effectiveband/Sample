@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import com.github.daniilbug.core.base.fragment.AppFragmentFactory
 import com.github.daniilbug.core.base.fragment.FragmentKey
-import com.github.daniilbug.search.presentation.SearchFragment
+import com.github.daniilbug.search.presentation.search.SearchFragment
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

@@ -1,6 +1,4 @@
-package band.effective.core.di
-
-import com.github.daniilbug.core.di.ComponentDependenciesProvider
+package com.github.daniilbug.core.di
 
 interface HasComponentDependencies {
     val dependencies: ComponentDependenciesProvider

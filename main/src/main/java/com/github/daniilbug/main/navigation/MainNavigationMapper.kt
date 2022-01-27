@@ -6,7 +6,7 @@ import com.github.daniilbug.core.navigation.cicerone.CiceroneScreenMapper
 import com.github.daniilbug.core.navigation.key
 import com.github.daniilbug.feed.presentation.feed.FeedFragment
 import com.github.daniilbug.mainNavigation.MainScreen
-import com.github.daniilbug.search.presentation.SearchFragment
+import com.github.daniilbug.search.presentation.search.SearchFragment
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 import javax.inject.Inject
 

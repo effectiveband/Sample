@@ -22,4 +22,5 @@ dependencies {
     implementation projects.core
     implementation projects.coreui
     implementation projects.mainNavigation
+    implementation projects.newsApi
 }

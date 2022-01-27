@@ -2,7 +2,6 @@ package com.github.daniilbug.feed.presentation.feed
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -33,32 +32,10 @@ class FeedFragment @Inject constructor(
         }
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.state.collectLatest { state -> setState(adapter, state) }
+                viewModel.headlines.collectLatest { headlines ->
+                    adapter.submitData(headlines)
+                }
             }
-        }
-    }
-
-    private fun setState(adapter: FeedAdapter, state: FeedState) {
-        when(state) {
-            FeedState.Loading -> setLoading()
-            FeedState.NetworkError -> TODO()
-            is FeedState.UnexpectedError -> TODO()
-            is FeedState.Headlines -> setHeadlines(adapter, state.items)
-        }
-    }
-
-    private fun setLoading() {
-        with(binding) {
-            feedProgressBar.isVisible = true
-            feedRecycler.isVisible = false
-        }
-    }
-
-    private fun setHeadlines(adapter: FeedAdapter, items: List<HeadlinesItemUI>) {
-        with(binding) {
-            feedProgressBar.isVisible = false
-            feedRecycler.isVisible = true
-            adapter.submitList(items)
         }
     }
 }

@@ -4,7 +4,6 @@ import android.app.Activity
 import android.app.Service
 import android.content.Context
 import androidx.fragment.app.Fragment
-import band.effective.core.di.HasComponentDependencies
 
 interface ComponentDependencies
 

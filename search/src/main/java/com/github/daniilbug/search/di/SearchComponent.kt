@@ -14,7 +14,10 @@ val searchComponent = featureComponent<SearchComponent, Activity> { activity ->
 
 @Component(
     dependencies = [SearchComponentDependencies::class],
-    modules = [SearchFragmentModule::class]
+    modules = [
+        SearchFragmentModule::class,
+        SearchViewModelModule::class
+    ]
 )
 interface SearchComponent {
     fun getFragmentFactory(): FragmentFactory

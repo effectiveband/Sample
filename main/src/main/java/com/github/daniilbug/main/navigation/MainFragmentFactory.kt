@@ -5,11 +5,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import com.github.daniilbug.about.di.aboutComponent
 import com.github.daniilbug.feed.di.feedComponent
+import com.github.daniilbug.search.di.searchComponent
 
 class MainFragmentFactory(activity: Activity): FragmentFactory() {
 
     private val factories = listOf(
         feedComponent.getInstance(activity).getFragmentFactory(),
+        searchComponent.getInstance(activity).getFragmentFactory(),
         aboutComponent.getInstance(activity).getFragmentFactory()
     )
 

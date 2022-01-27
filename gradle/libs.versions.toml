@@ -19,6 +19,9 @@ debugdrawer = "0.9.7"
 cicerone = "7.1"
 timber = "5.0.1"
 glide = "4.12.0"
+moshi = "1.13.0"
+paging = "3.1.0"
+logging = "4.9.3"
 
 [libraries]
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
@@ -48,6 +51,12 @@ dagger-processor = { module = "com.google.dagger:dagger-compiler", version.ref =
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber"}
 
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+okhttp-logging = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "logging"}
+converter-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "retrofit" }
+
+moshi-core = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
+moshi-processor = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
+moshi-adapters = { module = "com.squareup.moshi:moshi-adapters", version.ref = "moshi" }
 
 debugdrawer-core = { module = "au.com.gridstone.debugdrawer:debugdrawer", version.ref = "debugdrawer" }
 debugdrawer-retrofit = { module = "au.com.gridstone.debugdrawer:debugdrawer-retrofit", version.ref = "debugdrawer" }
@@ -55,6 +64,8 @@ debugdrawer-timber = { module = "au.com.gridstone.debugdrawer:debugdrawer-timber
 debugdrawer-logger = { module = "au.com.gridstone.debugdrawer:debugdrawer-okhttp-logger", version.ref = "debugdrawer" }
 
 cicerone = { module = "com.github.terrakok:cicerone", version.ref = "cicerone"}
+
+paging = { module = "androidx.paging:paging-runtime" , version.ref = "paging"}
 
 [bundles]
 kotlin = ["kotlin-stdlib"]

@@ -39,10 +39,14 @@ android {
 
     productFlavors {
         dev {
+            buildConfigField "String", "NEWS_BASE_URL", "\"https://newsapi.org/v2/\""
+            buildConfigField "String", "NEWS_API_KEY", "\"85366ee982e642d7957abb89a7559431\""
             dimension "default"
         }
 
         prod {
+            buildConfigField "String", "NEWS_BASE_URL", "\"https://newsapi.org/v2/\""
+            buildConfigField "String", "NEWS_API_KEY", "\"85366ee982e642d7957abb89a7559431\""
             dimension "default"
         }
 
@@ -84,8 +88,8 @@ dependencies {
     implementation libs.dagger.annotations
     kapt libs.dagger.processor
 
-    debugImplementation libs.debugdrawer.core
-    debugImplementation libs.debugdrawer.retrofit
-    debugImplementation libs.debugdrawer.timber
-    debugImplementation libs.debugdrawer.logger
+    debugApi libs.debugdrawer.core
+    debugApi libs.debugdrawer.retrofit
+    debugApi libs.debugdrawer.timber
+    debugApi libs.debugdrawer.logger
 }
