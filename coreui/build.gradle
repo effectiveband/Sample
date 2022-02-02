@@ -22,4 +22,5 @@ dependencies {
 
     implementation projects.core
     implementation libs.paging
+    implementation libs.splash
 }

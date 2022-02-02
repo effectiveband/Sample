@@ -22,6 +22,7 @@ glide = "4.12.0"
 moshi = "1.13.0"
 paging = "3.1.0"
 logging = "4.9.3"
+splash = "1.0.0-beta01"
 
 [libraries]
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
@@ -66,6 +67,7 @@ debugdrawer-logger = { module = "au.com.gridstone.debugdrawer:debugdrawer-okhttp
 cicerone = { module = "com.github.terrakok:cicerone", version.ref = "cicerone"}
 
 paging = { module = "androidx.paging:paging-runtime" , version.ref = "paging"}
+splash = { module = "androidx.core:core-splashscreen", version.ref = "splash" }
 
 [bundles]
 kotlin = ["kotlin-stdlib"]

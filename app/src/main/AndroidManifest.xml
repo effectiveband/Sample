@@ -9,11 +9,11 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:theme="@style/Theme.Headlines.Starting"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
         <activity
             android:name="com.github.daniilbug.main.presentation.MainActivity"
-            android:theme="@style/Theme.Headlines"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

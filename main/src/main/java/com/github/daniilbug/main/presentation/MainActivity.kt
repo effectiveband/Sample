@@ -2,6 +2,7 @@ package com.github.daniilbug.main.presentation
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.ViewModelProvider
 import com.github.daniilbug.core.base.activity.NavigationActivity
 import com.github.daniilbug.main.R
@@ -22,6 +23,7 @@ class MainActivity : NavigationActivity(R.layout.activity_main) {
     private val viewModel: MainViewModel by viewModels { viewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         mainComponent.getInstance(this).inject(this)
         super.onCreate(savedInstanceState)
         supportFragmentManager.fragmentFactory = MainFragmentFactory(activity = this)

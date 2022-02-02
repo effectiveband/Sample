@@ -21,7 +21,7 @@ class HeadlinesApp: Application(), HasComponentDependencies {
             Timber.plant(Timber.DebugTree())
         }
 
-        DynamicColors.applyToActivitiesIfAvailable(this, R.style.Theme_Headlines)
+        DynamicColors.applyToActivitiesIfAvailable(this)
 
         val cicerone = Cicerone.create()
 
