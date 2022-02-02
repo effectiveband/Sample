@@ -114,6 +114,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/marginMiddle"
-        android:src="@drawable/ic_date"
+        android:src="@drawable/ic_open_in_browser"
         app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
