@@ -19,4 +19,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    implementation projects.core
+    implementation libs.paging
 }

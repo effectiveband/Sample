@@ -6,7 +6,7 @@ data class SearchItemUI(
     val id: String,
     val title: String,
     val description: String,
-    val imageUrl: String,
+    val imageUrl: String?,
     val source: String,
     val date: Date
 )

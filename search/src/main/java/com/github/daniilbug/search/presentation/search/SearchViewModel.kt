@@ -18,13 +18,18 @@ class SearchViewModel @Inject constructor(
     private val mutableQuery = MutableStateFlow("")
 
     val state: StateFlow<SearchState> = mutableQuery.flatMapLatest { query ->
-        Pager(
-            config = PagingConfig(pageSize = 10, enablePlaceholders = true),
-            pagingSourceFactory = { newsRepository.getArticles(query) }
-        ).flow.cachedIn(viewModelScope).mapLatest { data ->
-            SearchState.News(
-                data.map(ArticleDomain::asSearchItemUI)
-            )
+        when {
+            query.isEmpty() -> flowOf(SearchState.Empty)
+            else -> {
+                Pager(
+                    config = PagingConfig(pageSize = 10, enablePlaceholders = true),
+                    pagingSourceFactory = { newsRepository.getArticles(query) }
+                ).flow.cachedIn(viewModelScope).mapLatest { data ->
+                    SearchState.News(
+                        data.map(ArticleDomain::asSearchItemUI)
+                    )
+                }
+            }
         }
     }.stateIn(viewModelScope, SharingStarted.Lazily, SearchState.Loading)
 

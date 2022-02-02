@@ -3,6 +3,7 @@ package com.github.daniilbug.search.presentation.search
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -11,12 +12,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.PagingData
 import com.github.daniilbug.core.base.viewBinding
+import com.github.daniilbug.core.entity.ErrorReason
+import com.github.daniilbug.coreui.extensions.onStateUpdate
+import com.github.daniilbug.newsapi.domain.NewsLoadException
 import com.github.daniilbug.search.R
 import com.github.daniilbug.search.databinding.FragmentSearchBinding
 import com.github.daniilbug.search.presentation.adapter.SearchAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import java.util.*
 import javax.inject.Inject
 
 class SearchFragment @Inject constructor(
@@ -32,7 +35,7 @@ class SearchFragment @Inject constructor(
         val adapter = SearchAdapter()
         with(binding) {
             searchRecycler.adapter = adapter
-            searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextChange(newText: String?): Boolean {
                     viewModel.sendEvent(SearchEvent.Search(newText.orEmpty()))
                     return true
@@ -41,6 +44,9 @@ class SearchFragment @Inject constructor(
                 override fun onQueryTextSubmit(query: String?): Boolean = false
             })
         }
+        adapter.onStateUpdate(
+            onError = { ex -> (ex as? NewsLoadException)?.reason?.let(::setError) }
+        )
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.collectLatest { state -> setState(adapter, state) }
@@ -50,16 +56,44 @@ class SearchFragment @Inject constructor(
 
     private suspend fun setState(adapter: SearchAdapter, state: SearchState) {
         when (state) {
+            SearchState.Empty -> setEmpty()
             SearchState.Loading -> setLoading()
             is SearchState.News -> setNews(adapter, state.news)
         }
     }
 
-    private fun setLoading() {
+    private fun setEmpty() {
+        with(binding) {
+            searchRecycler.isVisible = false
+            searchCenteredLayout.isVisible = true
+            searchCenteredImage.setImageResource(R.drawable.ic_smile)
+            searchCenteredText.setText(R.string.search_empty)
+            searchRecycler.scrollToPosition(0)
+        }
+    }
 
+    private fun setLoading() {
+        with(binding) {
+            searchRecycler.isVisible = false
+            searchCenteredLayout.isVisible = false
+            searchRecycler.scrollToPosition(0)
+        }
     }
 
     private suspend fun setNews(adapter: SearchAdapter, news: PagingData<SearchItemUI>) {
+        with(binding) {
+            searchRecycler.isVisible = true
+            searchCenteredLayout.isVisible = false
+        }
         adapter.submitData(news)
+    }
+
+    private fun setError(reason: ErrorReason) {
+        with(binding) {
+            searchRecycler.isVisible = false
+            searchCenteredLayout.isVisible = true
+            searchCenteredImage.setImageResource(R.drawable.ic_not_found)
+            searchCenteredText.text = reason.message
+        }
     }
 }

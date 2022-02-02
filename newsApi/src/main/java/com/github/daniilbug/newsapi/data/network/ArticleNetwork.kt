@@ -25,13 +25,13 @@ class ArticleNetwork(
     @Json(name = "title")
     val title: String,
     @Json(name = "description")
-    val description: String,
+    val description: String?,
     @Json(name = "source")
     val source: ArticleSourceNetwork,
     @Json(name = "url")
     val url: String,
     @Json(name = "urlToImage")
-    val imageUrl: String,
+    val imageUrl: String?,
     @Json(name = "publishedAt")
     val date: Date
 )
