@@ -8,6 +8,7 @@ import androidx.paging.cachedIn
 import androidx.paging.map
 import com.github.daniilbug.newsapi.data.ArticleDomain
 import com.github.daniilbug.newsapi.domain.NewsRepository
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
@@ -17,7 +18,8 @@ class SearchViewModel @Inject constructor(
 
     private val mutableQuery = MutableStateFlow("")
 
-    val state: StateFlow<SearchState> = mutableQuery.flatMapLatest { query ->
+    @OptIn(FlowPreview::class)
+    val state: StateFlow<SearchState> = mutableQuery.debounce(500L).flatMapLatest { query ->
         when {
             query.isEmpty() -> flowOf(SearchState.Empty)
             else -> {
@@ -31,7 +33,7 @@ class SearchViewModel @Inject constructor(
                 }
             }
         }
-    }.stateIn(viewModelScope, SharingStarted.Lazily, SearchState.Loading)
+    }.stateIn(viewModelScope, SharingStarted.Lazily, SearchState.Empty)
 
     fun sendEvent(event: SearchEvent) {
         when (event) {

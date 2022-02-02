@@ -45,7 +45,8 @@ class SearchFragment @Inject constructor(
             })
         }
         adapter.onStateUpdate(
-            onError = { ex -> (ex as? NewsLoadException)?.reason?.let(::setError) }
+            onError = { ex -> (ex as? NewsLoadException)?.reason.let(::setError) },
+            onInitialLoading = { setLoading() }
         )
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -57,7 +58,6 @@ class SearchFragment @Inject constructor(
     private suspend fun setState(adapter: SearchAdapter, state: SearchState) {
         when (state) {
             SearchState.Empty -> setEmpty()
-            SearchState.Loading -> setLoading()
             is SearchState.News -> setNews(adapter, state.news)
         }
     }
@@ -66,7 +66,8 @@ class SearchFragment @Inject constructor(
         with(binding) {
             searchRecycler.isVisible = false
             searchCenteredLayout.isVisible = true
-            searchCenteredImage.setImageResource(R.drawable.ic_smile)
+            searchProgressBar.isVisible = false
+            searchCenteredImage.setImageResource(R.drawable.ic_search)
             searchCenteredText.setText(R.string.search_empty)
             searchRecycler.scrollToPosition(0)
         }
@@ -76,7 +77,7 @@ class SearchFragment @Inject constructor(
         with(binding) {
             searchRecycler.isVisible = false
             searchCenteredLayout.isVisible = false
-            searchRecycler.scrollToPosition(0)
+            searchProgressBar.isVisible = true
         }
     }
 
@@ -84,16 +85,18 @@ class SearchFragment @Inject constructor(
         with(binding) {
             searchRecycler.isVisible = true
             searchCenteredLayout.isVisible = false
+            searchProgressBar.isVisible = false
         }
         adapter.submitData(news)
     }
 
-    private fun setError(reason: ErrorReason) {
+    private fun setError(reason: ErrorReason?) {
         with(binding) {
             searchRecycler.isVisible = false
             searchCenteredLayout.isVisible = true
+            searchProgressBar.isVisible = false
             searchCenteredImage.setImageResource(R.drawable.ic_not_found)
-            searchCenteredText.text = reason.message
+            searchCenteredText.text = reason?.message ?: getString(R.string.unexpected_error)
         }
     }
 }
