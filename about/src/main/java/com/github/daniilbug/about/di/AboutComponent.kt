@@ -14,7 +14,10 @@ val aboutComponent = featureComponent<AboutComponent, Activity> { activity ->
 
 @Component(
     dependencies = [AboutComponentDependencies::class],
-    modules = [AboutFragmentModule::class]
+    modules = [
+        AboutFragmentModule::class,
+        AboutViewModelModule::class
+    ]
 )
 interface AboutComponent {
     fun getFragmentFactory(): FragmentFactory
