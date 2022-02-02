@@ -9,6 +9,7 @@ fun ArticleNetwork.asDomain(): ArticleDomain {
         source = source.name,
         url = url,
         imageUrl = imageUrl,
-        date = date
+        date = date,
+        content = content.orEmpty()
     )
 }

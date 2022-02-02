@@ -5,7 +5,9 @@ import com.github.daniilbug.newsapi.data.ArticleDomain
 fun ArticleDomain.asHeadlinesItemUI(): HeadlinesItemUI {
     return HeadlinesItemUI(
         title,
-        title,
+        content,
+        imageUrl,
+        url,
         source,
         date
     )

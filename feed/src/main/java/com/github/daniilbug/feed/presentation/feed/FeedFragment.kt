@@ -30,7 +30,9 @@ class FeedFragment @Inject constructor(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = FeedAdapter(onClick = { })
+        val adapter = FeedAdapter(
+            onClick = { item -> viewModel.sendEvent(FeedEvent.OpenDetails(item)) }
+        )
         with(binding) {
             feedRecycler.adapter = adapter
         }

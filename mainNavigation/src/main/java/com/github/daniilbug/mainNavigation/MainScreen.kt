@@ -17,4 +17,9 @@ sealed class MainScreen : AppScreen {
         override val name: String
             get() = "Search"
     }
+
+    data class Article(val details: ArticleDetails): MainScreen() {
+        override val name: String
+            get() = "Article"
+    }
 }

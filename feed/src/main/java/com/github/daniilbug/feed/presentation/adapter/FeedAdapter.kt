@@ -26,7 +26,7 @@ class FeedAdapter(
             oldItem: HeadlinesItemUI,
             newItem: HeadlinesItemUI
         ): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.title == newItem.title
         }
 
         override fun areContentsTheSame(

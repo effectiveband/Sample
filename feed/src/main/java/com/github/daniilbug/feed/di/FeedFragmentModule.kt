@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import com.github.daniilbug.core.base.fragment.AppFragmentFactory
 import com.github.daniilbug.core.base.fragment.FragmentKey
+import com.github.daniilbug.feed.presentation.details.ArticleDetailsFragment
 import com.github.daniilbug.feed.presentation.feed.FeedFragment
 import dagger.Binds
 import dagger.Module
@@ -30,4 +31,9 @@ interface FeedFragmentModule {
     @IntoMap
     @FragmentKey(FeedFragment::class)
     fun bindFeedFragment(fragment: FeedFragment): Fragment
+
+    @Binds
+    @IntoMap
+    @FragmentKey(ArticleDetailsFragment::class)
+    fun bindArticleFragment(fragment: ArticleDetailsFragment): Fragment
 }

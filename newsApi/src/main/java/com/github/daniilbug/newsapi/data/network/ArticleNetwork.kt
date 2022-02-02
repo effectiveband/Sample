@@ -32,6 +32,8 @@ class ArticleNetwork(
     val url: String,
     @Json(name = "urlToImage")
     val imageUrl: String?,
+    @Json(name = "content")
+    val content: String?,
     @Json(name = "publishedAt")
     val date: Date
 )

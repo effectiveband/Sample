@@ -8,5 +8,6 @@ data class ArticleDomain(
     val source: String,
     val url: String,
     val imageUrl: String?,
-    val date: Date
+    val date: Date,
+    val content: String
 )

@@ -3,19 +3,20 @@ package com.github.daniilbug.feed.presentation.feed
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.*
+import com.github.daniilbug.core.navigation.AppRouter
+import com.github.daniilbug.mainNavigation.ArticleDetails
+import com.github.daniilbug.mainNavigation.MainScreen
 import com.github.daniilbug.newsapi.data.ArticleDomain
 import com.github.daniilbug.newsapi.domain.NewsRepository
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.mapLatest
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
 import kotlin.random.Random
 
 class FeedViewModel @Inject constructor(
+    private val router: AppRouter<MainScreen>,
     private val newsRepository: NewsRepository
 ) : ViewModel() {
 
@@ -24,5 +25,17 @@ class FeedViewModel @Inject constructor(
         pagingSourceFactory = { newsRepository.getHeadlines() }
     ).flow.cachedIn(viewModelScope).mapLatest { data ->
         data.map(ArticleDomain::asHeadlinesItemUI)
+    }
+
+    fun sendEvent(event: FeedEvent) {
+        when (event) {
+            is FeedEvent.OpenDetails -> openDetails(event.headlinesItem)
+        }
+    }
+
+    private fun openDetails(headlinesItem: HeadlinesItemUI) {
+        router.open(
+            MainScreen.Article(headlinesItem.asArticleDetails())
+        )
     }
 }
