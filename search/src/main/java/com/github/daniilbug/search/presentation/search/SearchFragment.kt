@@ -10,7 +10,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.paging.PagingData
 import com.github.daniilbug.core.base.viewBinding
 import com.github.daniilbug.core.entity.ErrorReason
 import com.github.daniilbug.coreui.extensions.onStateUpdate
@@ -32,7 +31,9 @@ class SearchFragment @Inject constructor(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = SearchAdapter()
+        val adapter = SearchAdapter(
+            onClick = { item -> viewModel.sendEvent(SearchEvent.OpenDetails(item)) }
+        )
         with(binding) {
             searchRecycler.adapter = adapter
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -46,7 +47,8 @@ class SearchFragment @Inject constructor(
         }
         adapter.onStateUpdate(
             onError = { ex -> (ex as? NewsLoadException)?.reason.let(::setError) },
-            onInitialLoading = { setLoading() }
+            onInitialLoading = { setLoading() },
+            onNotLoading = { setNotLoading() }
         )
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -58,7 +60,7 @@ class SearchFragment @Inject constructor(
     private suspend fun setState(adapter: SearchAdapter, state: SearchState) {
         when (state) {
             SearchState.Empty -> setEmpty()
-            is SearchState.News -> setNews(adapter, state.news)
+            is SearchState.News -> adapter.submitData(state.news)
         }
     }
 
@@ -81,13 +83,12 @@ class SearchFragment @Inject constructor(
         }
     }
 
-    private suspend fun setNews(adapter: SearchAdapter, news: PagingData<SearchItemUI>) {
+    private fun setNotLoading() {
         with(binding) {
             searchRecycler.isVisible = true
             searchCenteredLayout.isVisible = false
             searchProgressBar.isVisible = false
         }
-        adapter.submitData(news)
     }
 
     private fun setError(reason: ErrorReason?) {

@@ -14,11 +14,17 @@ import com.github.daniilbug.search.databinding.ItemSearchBinding
 import com.github.daniilbug.search.presentation.search.SearchItemUI
 import kotlin.random.Random
 
-class SearchAdapter : PagingDataAdapter<SearchItemUI, SearchAdapter.ViewHolder>(DiffCallback) {
+class SearchAdapter(
+    private val onClick: OnClickListener
+) : PagingDataAdapter<SearchItemUI, SearchAdapter.ViewHolder>(DiffCallback) {
+
+    fun interface OnClickListener {
+        fun onSearchItemClick(item: SearchItemUI)
+    }
 
     private object DiffCallback : DiffUtil.ItemCallback<SearchItemUI>() {
         override fun areItemsTheSame(oldItem: SearchItemUI, newItem: SearchItemUI): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.title == newItem.title
         }
 
         override fun areContentsTheSame(oldItem: SearchItemUI, newItem: SearchItemUI): Boolean {
@@ -29,7 +35,11 @@ class SearchAdapter : PagingDataAdapter<SearchItemUI, SearchAdapter.ViewHolder>(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemSearchBinding.inflate(inflater, parent, false)
-        return ViewHolder(binding)
+        return ViewHolder(binding).apply {
+            binding.root.setOnClickListener {
+                getItem(bindingAdapterPosition)?.let(onClick::onSearchItemClick)
+            }
+        }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
