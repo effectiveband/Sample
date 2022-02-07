@@ -28,6 +28,7 @@ So, if you need to setup a new project, it can help you as an example how everyt
 * Paging
 * Theming
 * Network
+* Multi-module
 * View Based UI
 
 ## How to run
