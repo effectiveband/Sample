@@ -3,4 +3,4 @@ If you want to help us with keeping this sample actual and working, here are som
 * Create an issue
 * Create a separate branch
 * Make a change
-* Create a merge request to main branch linked to the issue
+* Create a merge request to main branch linked to the issue with [@daniil.bugai](https://gitlab.com/daniil.bugai) as a reviewer
