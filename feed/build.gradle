@@ -1,0 +1,26 @@
+apply from: "${rootProject.projectDir}/common-ui.gradle"
+apply plugin: 'kotlin-kapt'
+
+android {
+    buildTypes {
+        debug {
+
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation projects.core
+    implementation projects.coreui
+    implementation projects.mainNavigation
+    implementation projects.newsApi
+}

@@ -1,0 +1,27 @@
+apply from: "${rootProject.projectDir}/common.gradle"
+apply plugin: 'kotlin-kapt'
+
+android {
+    buildTypes {
+        debug {
+
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation projects.core
+
+    implementation libs.retrofit
+    implementation libs.converter.moshi
+
+    implementation libs.moshi.core
+    implementation libs.moshi.adapters
+    implementation libs.okhttp.logging
+    kapt libs.moshi.processor
+}
