@@ -1,13 +1,18 @@
 package com.github.daniilbug.search.presentation.adapter
 
 import android.annotation.SuppressLint
+import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.github.daniilbug.coreui.extensions.load
+import com.github.daniilbug.coreui.themeColor
+import com.github.daniilbug.search.R
 import com.github.daniilbug.search.databinding.ItemSearchBinding
 import com.github.daniilbug.search.presentation.search.SearchItemUI
+import kotlin.random.Random
 
 class SearchAdapter(
     private val onClick: OnClickListener

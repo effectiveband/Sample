@@ -1,12 +1,16 @@
 package com.github.daniilbug.feed.presentation.adapter
 
+import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.github.daniilbug.coreui.themeColor
+import com.github.daniilbug.feed.R
 import com.github.daniilbug.feed.databinding.ItemHeadlinesBinding
 import com.github.daniilbug.feed.presentation.feed.HeadlinesItemUI
+import kotlin.random.Random
 
 class FeedAdapter(
     private val onClick: OnClickListener

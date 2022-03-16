@@ -1,8 +1,10 @@
 package com.github.daniilbug.feed.presentation.details
 
 import android.os.Bundle
+import android.text.format.DateUtils
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import androidx.fragment.app.viewModels
@@ -13,6 +15,7 @@ import com.github.daniilbug.core.base.fragment.createFragmentWithFactory
 import com.github.daniilbug.core.base.viewBinding
 import com.github.daniilbug.core.base.viewmodel.BaseSavedStateViewModelFactory
 import com.github.daniilbug.core.extensions.parcelableArgs
+import com.github.daniilbug.coreui.extensions.load
 import com.github.daniilbug.feed.R
 import com.github.daniilbug.feed.databinding.FragmentArticleBinding
 import com.github.daniilbug.mainNavigation.ArticleDetails

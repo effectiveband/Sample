@@ -9,7 +9,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Headlines"
 include ':app'
 include ':core'
 include ':coreui'
@@ -17,7 +16,10 @@ include ':network'
 include ':main'
 include ':mainNavigation'
 include ':feed'
+project(':feed').projectDir = new File(rootDir, 'screens/feed')
 include ':debug'
 include ':about'
+project(':about').projectDir = new File(rootDir, 'screens/about')
 include ':search'
+project(':search').projectDir = new File(rootDir, 'screens/search')
 include ':newsApi'
