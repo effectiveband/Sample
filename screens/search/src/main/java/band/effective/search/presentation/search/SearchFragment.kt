@@ -51,7 +51,7 @@ class SearchFragment @Inject constructor(
             onNotLoading = { setNotLoading() }
         )
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.collectLatest { state -> setState(adapter, state) }
             }
         }
